@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 ##
 ## Compare a set of images and report a structural similarity index (SSIM) matrix, in CSV and Mega-compatible formats.
+## As for dendograms smaller values mean closer objects, the report in the MEG file is abs(1-SSIM).
 ##
 ## Amaury Pupo Merino
 ## amaury.pupo@gmail.com
@@ -63,7 +64,7 @@ def write_meg(filename, unique_files, mat):
 		output_file.write("!Title: SSIM matrix;\n")
 		output_file.write("!Format DataType=Distance DataFormat=LowerLeft NTaxa={:d};\n".format(len(unique_files)))
 		output_file.write("!Description\n")
-		output_file.write("SSIM between images calculated with cmpimg\n;\n\n")
+		output_file.write("abs(1-SSIM) between images, as calculated by cmpimg\n;\n\n")
 
 		image_names = [rootname(f) for f in unique_files]
 
@@ -83,7 +84,7 @@ def write_meg(filename, unique_files, mat):
 					output_file.write("[{:2d}]   ".format(i+1))
 
 				if i > j:
-					output_file.write("{:9.3g}".format(mat[i,j]))
+					output_file.write("{:9.3g}".format(abs(1 - mat[i,j])))
 				else:
 					output_file.write(" " * 9)
 
