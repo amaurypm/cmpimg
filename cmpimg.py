@@ -117,7 +117,7 @@ def main():
 	parser=argparse.ArgumentParser(description="Compare a set of images and report a structural similarity index (SSIM) matrix, in CSV and Mega-compatible formats.")
 	parser.add_argument('image', nargs='+', help='Any image format supported by skimage.')
 	parser.add_argument('-o', '--output', default='ssim_matrix', help='output files base name [default: %(default)s].')
-	parser.add_argument('-v', '--version', action='version', version='1.0', help="Show program's version number and exit.")
+	parser.add_argument('-v', '--version', action='version', version='1.1', help="Show program's version number and exit.")
 
 	args=parser.parse_args()
 
